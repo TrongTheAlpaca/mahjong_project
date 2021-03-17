@@ -10,6 +10,11 @@ import torch.nn.functional as F
 from matplotlib import pyplot as plt
 from tqdm import trange, tqdm
 
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv('config.env'))
+
 
 ##############################################
 # CLASSES
@@ -159,8 +164,10 @@ if DEVICE.type == 'cuda':
 ##############################################
 print("\nLOADING DATASETS:\n")
 
+dataset_path = os.environ.get('DISCARD_DATASET')
+
 # Single-Phase Datasets
-train_dataset = DiscardDataset("E:/mahjong/discard_datasets/2019", 100_000, phase=PHASE)
+train_dataset = DiscardDataset(dataset_path, 100_000, phase=PHASE)
 
 # Creating data indices for training and validation splits:  (Inspired from https://stackoverflow.com/a/50544887)
 dataset_size = len(train_dataset)
@@ -192,7 +199,7 @@ validation_loader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_
 # ])
 
 # Test Dataset
-test_dataset = DiscardDataset("E:/mahjong/discard_datasets/2019", 10_000, phase=PHASE, reverse=True)
+test_dataset = DiscardDataset(dataset_path, 10_000, phase=PHASE, reverse=True)
 test_loader = torch.utils.data.DataLoader(test_dataset, shuffle=SHUFFLE_DATASET)
 
 ##############################################

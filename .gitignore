@@ -152,8 +152,8 @@ MANIFEST
 .python-version
 
 # Environments
-# .env
-.env/
+# config.env
+config.env/
 .venv/
 env/
 venv/
@@ -185,3 +185,4 @@ Thumbs.db #thumbnail cache on Windows
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,jupyternotebooks,python,visualstudiocode
+/config.env

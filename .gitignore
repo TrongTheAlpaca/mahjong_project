@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm,jupyternotebooks,python,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm,jupyternotebooks,python,visualstudiocode
 
+### CUSTOM CHECKPOINT IGNORE
+model_checkpoints/
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/

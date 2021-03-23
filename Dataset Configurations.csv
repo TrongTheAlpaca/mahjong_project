@@ -2,3 +2,4 @@ dataset_name,train_size,test_size,validation_split,batch,phases,years_training,y
 testing,10000,1000,0.2,32,-1,"000000001","000010001",FALSE
 default,10000000,1000000,0.2,32,-1,"000000001","000010001",FALSE
 heavy,80000000,1000000,0.2,32,-1,"000000001","000010001",FALSE
+balanced_test,34000,1000,0.2,32,-1,000000001,000010001,TRUE

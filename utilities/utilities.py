@@ -6,7 +6,7 @@ from datetime import timedelta
 import shutil
 import json
 import pickle
-from tqdm import tqdm
+from tqdm.autonotebook import trange, tqdm
 import pandas as pd
 
 ALL_YEARS = (2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)
@@ -36,8 +36,27 @@ def get_all_logs(path: Path, years=None, progress_bar=True) -> List[Path]:
             yield log
 
 
-def get_all_logs_annually(path: Path, years=None, progress_bar=True, filterblade=False) -> Generator[Tuple[int, List[Path]], None, None]:
-
+def get_all_logs_annually(path: Path, years=None, progress_bar=True, filterblade_path: Path = None) -> Generator[Tuple[int, List[Path]], None, None]:
+    """
+    filterblade_path: 
+        - Path to the log_game_data.parquet
+        - Table with following headers: 
+            - log_id
+            - red
+            - kui
+            - ton-nan
+            - sanma
+            - soku
+            - p0-dan
+            - p1-dan
+            - p2-dan
+            - p3-dan
+            - p0-rating
+            - p1-rating
+            - p2-rating
+            - p3-rating
+    """
+    
     if years is None:
         years = ALL_YEARS
 
@@ -46,10 +65,12 @@ def get_all_logs_annually(path: Path, years=None, progress_bar=True, filterblade
         raise Exception(f"INVALID YEARS: {invalid_years}")
 
     valid_ids = None
-    if filterblade:
-        game_data = pd.read_parquet(Path('E:') / 'mahjong' / 'pandas' / 'log_game_data.parquet', engine='fastparquet')  # Use `fastparquet` to preserve categorical data
+    if filterblade_path:
+        game_data = pd.read_parquet(filterblade_path, engine='fastparquet')  # Use `fastparquet` to preserve categorical data
         game_data = filter_logs(game_data)
         valid_ids = game_data.index
+        
+    filterblade = filterblade_path is not None
 
     for year in path.iterdir():
 

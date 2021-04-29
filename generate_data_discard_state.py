@@ -13,35 +13,10 @@ import utilities.utilities as util
 
 from pyarrow import parquet
 
-# import torch
-# from torch import nn
-
 from typing import List
 from utilities.tiles import TilesConverter as tc
 
 pd.set_option('display.max_columns', 500)
-
-
-# Possible Torch Commands
-# torch.cuda.current_device()
-# torch.cuda.device(0)
-# torch.cuda.device_count()
-# torch.cuda.get_device_name(0)
-# torch.cuda.is_available()
-
-# Got from https://stackoverflow.com/questions/48152674/how-to-check-if-pytorch-is-using-the-gpu
-# Setting device on GPU if available, else CPU
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# print('Using device:', device)
-# print()
-#
-# # Additional Info when using cuda
-# if device.type == 'cuda':
-#     print(torch.cuda.get_device_name(0))
-#     print('Memory Usage:')
-#     print('Allocated:', round(torch.cuda.memory_allocated(0) / 1024 ** 3, 1), 'GB')
-#     print('Cached:   ', round(torch.cuda.memory_reserved(0) / 1024 ** 3, 1), 'GB')
-# print()
 
 
 def bin_string(number, digits=136):

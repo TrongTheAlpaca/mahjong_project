@@ -71,8 +71,8 @@ def get_all_logs_annually(path: Path, years=None, progress_bar=True, filterblade
         valid_ids = game_data.index
         
     filterblade = filterblade_path is not None
-
-    for year in path.iterdir():
+    years_path = sorted([p for p in path.iterdir()])
+    for year in years_path:
 
         if int(year.stem) not in years:
             continue
